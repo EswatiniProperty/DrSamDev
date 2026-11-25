@@ -2,507 +2,113 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Eswatini Property</title>
-<meta name="theme-color" content="#0b2f5e">
-<!-- PWA / ADD TO HOME SCREEN - NO ADDRESS BAR -->
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Eswatini Property">
-<meta name="application-name" content="Eswatini Property">
-<link rel="apple-touch-icon" href="icon-180.png">
-<link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
-<link rel="icon" type="image/png" href="icon-180.png">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name | Web Designer in Eswatini</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f2f4f8;padding-bottom:80px}
-.header{background:#0b2f5e;color:white;padding:18px 16px 20px;border-radius:0 0 20px 20px;padding-top:calc(18px + env(safe-area-inset-top))}
-.header h1{font-size:22px}
-.header p{font-size:13px;opacity:.9;margin-top:4px}
-.topbtns{display:flex;gap:8px;margin-top:14px}
-.topbtns button{flex:1;border:none;padding:10px;border-radius:20px;font-weight:bold;cursor:pointer}
-.btnWhite{background:white;color:#0b2f5e}
-.btnBlue{background:#3a7bff;color:white}
-.searchBox{background:white;margin:14px 16px 0;padding:12px;border-radius:14px;display:flex;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.searchBox input{flex:1;border:none;outline:none;font-size:15px}
-.searchBox button{background:#3a7bff;color:white;border:none;padding:8px 14px;border-radius:10px}
-.chips{display:flex;gap:8px;overflow:auto;padding:12px 16px}
-.chips button{white-space:nowrap;border:1px solid #ddd;background:white;padding:8px 14px;border-radius:20px;cursor:pointer}
-.chips button.active{background:#0b2f5e;color:white}
-.filterBox{background:white;margin:0 16px 10px;padding:12px;border-radius:14px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.filterBox label{font-size:12px;font-weight:bold;color:#0b2f5e}
-.filterBox input,.filterBox select{width:100%;padding:10px;margin:4px 0 8px;border:1px solid #ddd;border-radius:10px;font-size:14px}
-.fRow{display:flex;gap:8px}.fRow>div{flex:1}
-.clearBtn{width:100%;padding:10px;border:1px solid #0b2f5e;background:white;color:#0b2f5e;border-radius:10px;font-weight:bold;cursor:pointer}
-.section{padding:0 16px;display:flex;justify-content:space-between;align-items:center}
-.section h3{font-size:17px}
-.card{background:white;margin:12px 16px;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.card.featuredCard{border:2px solid #FFD700;box-shadow:0 4px 14px rgba(255,200,0,.35)}
-.card img{width:100%;height:190px;object-fit:cover}
-.cardBody{padding:14px}
-.badge{display:inline-block;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:bold;color:white}
-.rent{background:#2e9e5b}.sale{background:#ff6b00}.pending{background:#ffaa00}
-.featuredBadge{background:#FFD700;color:#000}
-.demoBadge{background:#0b2f5e}
-.price{font-size:20px;font-weight:bold;margin:8px 0 2px}
-.meta{color:#666;font-size:13px}
-.desc{font-size:13px;color:#444;margin:8px 0}
-.actions{display:flex;gap:8px;margin-top:10px}
-.actions button{flex:1;padding:11px;border:none;border-radius:10px;font-weight:bold;cursor:pointer}
-.enquire{background:#25D366}.details{background:#eee}
-.ownerBox{background:#fff7e6;border:1px solid #ffcc66;padding:12px;border-radius:12px;margin:14px 16px;font-size:13px}
-.ownerBox b{color:#b36b00}
-.installBox{background:#0b2f5e;color:white;padding:12px;border-radius:12px;margin:14px 16px 0;font-size:13px;display:flex;gap:10px;align-items:center}
-.installBox button{background:white;color:#0b2f5e;border:none;padding:8px 12px;border-radius:20px;font-weight:bold;cursor:pointer;white-space:nowrap}
-.nav{position:fixed;bottom:0;left:0;right:0;background:white;display:flex;justify-content:space-around;padding:10px 0 calc(10px + env(safe-area-inset-bottom));border-top:1px solid #ddd;z-index:99}
-.nav button{border:none;background:none;font-size:12px;cursor:pointer}
-.nav button.active{color:#0b2f5e;font-weight:bold}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;overflow:auto}
-.modalContent{background:white;margin:20px auto;padding:20px;border-radius:16px;max-width:480px}
-.modalContent h2{margin-bottom:10px}
-.modalContent input,.modalContent select,.modalContent textarea{width:100%;padding:11px;margin:6px 0;border:1px solid #ddd;border-radius:10px;font-size:14px}
-.modalContent label{font-size:13px;font-weight:bold;margin-top:8px;display:block}
-.payBox{background:#eef4ff;padding:12px;border-radius:12px;margin:10px 0;font-size:14px}
-.payBox b{color:#0b2f5e}
-.bigBtn{width:100%;padding:13px;border:none;border-radius:12px;font-weight:bold;font-size:16px;cursor:pointer;margin-top:8px}
-.green{background:#25D366}.blue{background:#0b2f5e;color:white}.grey{background:#eee}.red{background:#ff4444;color:white}
-.close{float:right;font-size:22px;cursor:pointer}
-.hidden{display:none}
-#photoPreview{width:100%;height:180px;object-fit:cover;border-radius:12px;display:none;margin-top:8px;border:1px solid #ddd}
-.uploadBtn{display:block;text-align:center;background:#eef4ff;border:2px dashed #0b2f5e;padding:14px;border-radius:12px;font-weight:bold;color:#0b2f5e;cursor:pointer;margin:6px 0}
-.req{color:red}
-.photoThumb{width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid #ddd}
-.thumbWrap{position:relative}
-.removeThumb{position:absolute;top:-6px;right:-6px;background:#ff4444;color:white;border:none;border-radius:50%;width:20px;height:20px;font-size:12px;cursor:pointer;line-height:1}
-.detailThumb{width:70px;height:70px;object-fit:cover;border-radius:8px;cursor:pointer;border:1px solid #ddd}
-.detailThumb.active{border:2px solid #0b2f5e}
-#liveDot{width:8px;height:8px;background:#25D366;border-radius:50%;display:inline-block;animation:pulse 1.5s infinite}
-@keyframes pulse{0%{opacity:1}50%{opacity:.3}100%{opacity:1}}
+body{background:#0f0f0f;color:#fff}
+a{text-decoration:none;color:inherit}
+.top{padding:14px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#0f0f0f;z-index:10}
+.logo{font-weight:900;font-size:20px}
+.logo span{color:#FFD700}
+.top a{background:#25D366;padding:8px 14px;border-radius:20px;font-weight:700;font-size:13px}
+.hero{padding:30px 18px;text-align:center}
+.pic{width:150px;height:150px;border-radius:50%;object-fit:cover;border:4px solid #FFD700;margin:0 auto 14px;display:block;background:#333}
+.hero h1{font-size:30px;line-height:1.2}
+.hero h1 span{color:#FFD700}
+.hero p{color:#bbb;margin:10px 0;font-size:15px}
+.badge{display:inline-block;background:#1e1e1e;padding:6px 12px;border-radius:20px;font-size:13px;margin:4px}
+.btn{display:block;background:#25D366;padding:14px;border-radius:12px;font-weight:900;text-align:center;margin:14px 0}
+.btn2{display:block;background:#FFD700;color:#000;padding:14px;border-radius:12px;font-weight:900;text-align:center}
+.section{padding:22px 18px}
+.section h2{font-size:22px;margin-bottom:12px}
+.card{background:#1e1e1e;border-radius:14px;padding:16px;margin-bottom:12px}
+.card img{width:100%;height:160px;object-fit:cover;border-radius:10px;background:#333}
+.card h3{margin:10px 0 4px}
+.card p{color:#bbb;font-size:14px}
+.card .price{color:#FFD700;font-weight:900;margin:8px 0}
+.card a{display:inline-block;background:#fff;color:#000;padding:10px 16px;border-radius:8px;font-weight:700;font-size:14px;margin-top:8px}
+.skill{display:inline-block;background:#222;padding:8px 14px;border-radius:20px;margin:4px;font-size:14px}
+.footer{text-align:center;padding:20px;color:#888;font-size:13px}
+input,textarea{width:100%;padding:12px;margin:8px 0;border-radius:10px;border:0;background:#222;color:#fff}
 </style>
 </head>
 <body>
 
-<div class="header">
-<h1>Find Your Home in Eswatini</h1>
-<p>Tenants • Buyers • Owners — Connected by Eswatini Property</p>
-<div class="topbtns">
-<button class="btnWhite" onclick="filterType('Rent')">🏠 Rent</button>
-<button class="btnWhite" onclick="filterType('Sale')">🏡 Buy</button>
-<button class="btnBlue" onclick="openList()">+ List Property • E100</button>
-</div>
+<div class="top">
+  <div class="logo">YOUR<span>NAME</span> .SZ</div>
+  <a href="https://wa.me/26876123456?text=Hi,%20I%20want%20a%20website">Hire Me</a>
 </div>
 
-<div id="installBanner" class="installBox" style="display:none">
-<span style="font-size:22px">📱</span>
-<div style="flex:1"><b>Install Eswatini Property App</b><br><span id="installText" style="opacity:.9">Add to Home Screen for full-screen, no address bar.</span></div>
-<button id="installBtn" onclick="installApp()">Install</button>
-<button onclick="document.getElementById('installBanner').style.display='none'" style="background:transparent;color:white;padding:6px">✕</button>
+<div class="hero">
+  <!-- CHANGE THIS: Upload your photo to GitHub as profile.jpg and keep this name -->
+  <img class="pic" src="profile.jpg" alt="Your Name">
+  <h1>Hi, I'm <span>Your Name</span><br>Web Designer in Eswatini</h1>
+  <p>I build fast websites for restaurants & businesses that help them get orders on WhatsApp.</p>
+  <div>
+    <span class="badge">📍 Manzini, Eswatini</span>
+    <span class="badge">⚡ 3-Day Delivery</span>
+    <span class="badge">💰 From E2,500</span>
+  </div>
+  <a class="btn" href="https://wa.me/26876123456?text=Hi,%20I%20want%20a%20website%20for%20my%20business">📱 WHATSAPP ME</a>
+  <a class="btn2" href="#work">SEE MY WORK ↓</a>
 </div>
 
-<div class="searchBox">
-<input id="searchInput" placeholder="Search Manzini, Mbabane, Matsapha..." oninput="render()">
-<button onclick="render()">Search</button>
+<div class="section" id="work">
+  <h2>💼 My Work</h2>
+  
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800" alt="Cypress">
+    <h3>Cypress Basket - Restaurant Website</h3>
+    <p>Menu, WhatsApp ordering, branches in Manzini / Siteki / Piggs Peak, FREE birthday venue booking.</p>
+    <div class="price">Live Demo • E2,500 Project</div>
+    <a href="https://eswatiniproperty.github.io/Cypress-/" target="_blank">View Live Site →</a>
+  </div>
+
+  <div class="card">
+    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800" alt="Restaurant">
+    <h3>Your Business Could Be Next</h3>
+    <p>Restaurant, salon, shop, church, school — I build a site that brings you customers from Google to WhatsApp.</p>
+    <div class="price">Starting from E2,500</div>
+    <a href="https://wa.me/26876123456?text=Hi,%20I%20want%20a%20website%20like%20Cypress">Start Your Project →</a>
+  </div>
 </div>
 
-<div class="chips">
-<button class="active" onclick="setLoc('All',this)">All</button>
-<button onclick="setLoc('Manzini',this)">Manzini</button>
-<button onclick="setLoc('Mbabane',this)">Mbabane</button>
-<button onclick="setLoc('Matsapha',this)">Matsapha</button>
-<button onclick="setLoc('Nhlangano',this)">Nhlangano</button>
-<button onclick="setLoc('Siteki',this)">Siteki</button>
+<div class="section">
+  <h2>🛠️ What I Do</h2>
+  <span class="skill">Restaurant Websites</span>
+  <span class="skill">WhatsApp Ordering</span>
+  <span class="skill">Google Business</span>
+  <span class="skill">Menu Design</span>
+  <span class="skill">Birthday Booking</span>
+  <span class="skill">Fast Loading</span>
 </div>
 
-<div class="filterBox">
-<div class="fRow">
-<div><label>Min Price (E)</label><input id="minPrice" type="number" placeholder="e.g. 2000" oninput="render()"></div>
-<div><label>Max Price (E)</label><input id="maxPrice" type="number" placeholder="e.g. 8000" oninput="render()"></div>
-</div>
-<div class="fRow">
-<div><label>Beds</label><select id="bedsFilter" onchange="render()"><option value="">Any Beds</option><option value="1">1+ Bed</option><option value="2">2+ Beds</option><option value="3">3+ Beds</option><option value="4">4+ Beds</option></select></div>
-<div><label>Sort By</label><select id="sortBy" onchange="render()"><option value="new">Newest First</option><option value="low">Price: Low to High</option><option value="high">Price: High to Low</option><option value="beds">Most Beds</option></select></div>
-</div>
-<button class="clearBtn" onclick="clearFilters()">Clear Filters</button>
-</div>
-
-<div class="ownerBox">👋 <b>Are you an owner?</b> List your property for only <b>E100</b> for 30 days. Want to be at the TOP? Add <b>⭐ Featured +E150</b> (Total E250). Pay via MoMo to <b>78213337</b>. <a href="#" onclick="openList();return false;">List Now →</a></div>
-
-<div class="section"><h3>Featured Properties</h3><span id="count"></span></div>
-<div style="padding:0 16px;font-size:12px;color:#666"><span id="liveDot"></span> Live • Updates instantly when anyone lists</div>
-<div id="list"></div>
-
-<div id="mySection" class="hidden">
-<div class="section"><h3>My Listings</h3></div>
-<div id="myList"></div>
+<div class="section">
+  <h2>💰 Pricing</h2>
+  <div class="card">
+    <h3>Basic Website — E2,500</h3>
+    <p>✅ 1 Page Website<br>✅ Menu + WhatsApp Order<br>✅ 3 Branches + Map<br>✅ Live in 3 Days</p>
+  </div>
+  <div class="card">
+    <h3>Full Business Website — E3,500</h3>
+    <p>✅ Everything in Basic<br>✅ Birthday / Booking Form<br>✅ Google Setup<br>✅ 1 Month Free Updates</p>
+  </div>
 </div>
 
-<div id="adminSection" class="hidden">
-<div class="section"><h3>🔐 Admin - Pending Approvals</h3><button onclick="showHome(document.querySelector('.nav button'))" style="padding:6px 12px;border-radius:10px;border:1px solid #ddd;background:white">Back Home</button></div>
-<div id="adminList"></div>
-<div style="padding:0 16px"><p style="font-size:12px;color:#666">Check MoMo 78213337 for payment, then Approve. Normal = E100. Featured = E250. If no payment, Reject.</p></div>
+<div class="section">
+  <h2>📩 Contact Me</h2>
+  <p style="color:#bbb;font-size:14px">Tell me about your business, I reply within 1 hour.</p>
+  <input placeholder="Your Name">
+  <input placeholder="Your Business Name">
+  <textarea rows="3" placeholder="What website do you need? e.g. Restaurant menu + WhatsApp order"></textarea>
+  <a class="btn" href="https://wa.me/26876123456?text=Hi,%20I%20want%20a%20website">SEND ON WHATSAPP →</a>
 </div>
 
-<div id="listModal" class="modal">
-<div class="modalContent">
-<span class="close" onclick="closeList()">×</span>
-<h2>+ List Your Property</h2>
-<p style="font-size:13px;color:#666">Listing Fee: <b>E100</b> for 30 days. Featured: <b>E250</b> total. Your listing goes to admin for approval.</p>
-<label>Property Title <span class="req">*</span></label><input id="fTitle" placeholder="e.g. 3 Bed House in Manzini">
-<label>Location</label>
-<select id="fLoc"><option>Manzini</option><option>Mbabane</option><option>Matsapha</option><option>Nhlangano</option><option>Siteki</option><option>Other</option></select>
-<label>Type</label><select id="fType"><option>Rent</option><option>Sale</option></select>
-<label>Price (E) <span class="req">*</span></label><input id="fPrice" type="number" placeholder="4500">
-<label>Bedrooms <span class="req">*</span></label><input id="fBeds" type="number" placeholder="3">
-<label>Bathrooms <span class="req">*</span></label><input id="fBaths" type="number" placeholder="2">
-<label>Property Photos (Max 5 - from your phone)</label>
-<label class="uploadBtn" for="fPhoto">📷 Tap to Choose Up To 5 Photos</label>
-<input id="fPhoto" type="file" accept="image/*" multiple style="display:none" onchange="previewPhotos(this)">
-<div id="photoPreviews" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px"></div>
-<p id="photoCount" style="font-size:12px;color:#666">0 / 5 photos</p>
-<p style="font-size:12px;color:#666">Or paste photo link if you have one:</p>
-<input id="fImg" placeholder="https://... (optional)">
-<label>Description</label><textarea id="fDesc" rows="3" placeholder="Near Manzini town, water + electricity..."></textarea>
-<label>Your Name (Owner) <span class="req">*</span></label><input id="fOwner" placeholder="Your full name">
-<label>Your Phone (Owner) <span class="req">*</span></label><input id="fPhone" placeholder="76xxxxxx">
-<div class="payBox">
-<b>💰 PAY LISTING FEE</b><br>
-<label style="display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer"><input type="checkbox" id="fFeatured" onchange="updateFee()" style="width:20px;height:20px;margin:0"> ⭐ Make it FEATURED - Top of Homepage (+E150)</label>
-<p id="feeText" style="margin-top:8px">Total to Pay: <b>E100</b><br>1. Send via MoMo to <b>78213337</b><br>2. Enter MoMo Reference below<br>3. Tap Submit - Admin will approve</p>
-</div>
-<label>MoMo Reference / Transaction ID <span class="req">*</span></label><input id="fMomo" placeholder="e.g. MP123456">
-<button class="bigBtn blue" onclick="submitProperty()">Submit for Approval</button>
-<button class="bigBtn grey" onclick="closeList()">Cancel</button>
-</div>
+<div class="footer">
+  Your Name — Web Designer, Manzini, Eswatini<br>
+  WhatsApp: 76 123 456 | Instagram: @yourname
 </div>
 
-<div id="detailModal" class="modal"><div class="modalContent" id="detailContent"></div></div>
-
-<div id="installModal" class="modal"><div class="modalContent" id="installModalContent"></div></div>
-
-<div class="nav">
-<button class="active" onclick="showHome(this)">🏠<br>Home</button>
-<button onclick="document.getElementById('searchInput').focus()">🔍<br>Search</button>
-<button onclick="openList()">➕<br>List Property</button>
-<button onclick="showMy(this)">📋<br>My Listings</button>
-<button onclick="openAdmin(this)">🔐<br>Admin</button>
-</div>
-
-<script>
-let deferredPrompt = null;
-window.addEventListener('beforeinstallprompt', function(e){
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').style.display='flex';
-  document.getElementById('installText').innerText = 'Tap Install to add to Home Screen.';
-});
-window.addEventListener('load', function(){
-  var isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  if(!isStandalone){
-    var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if(isIOS){
-      document.getElementById('installBanner').style.display='flex';
-      document.getElementById('installText').innerText = 'iPhone: Tap Share ⬆️ then Add to Home Screen.';
-    } else if(!deferredPrompt){
-      setTimeout(function(){ document.getElementById('installBanner').style.display='flex'; }, 1500);
-    }
-  }
-});
-function installApp(){
-  var isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  if(deferredPrompt){
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function(){ deferredPrompt=null; document.getElementById('installBanner').style.display='none'; });
-  } else if(isIOS){
-    document.getElementById('installModalContent').innerHTML = '<span class="close" onclick="document.getElementById(\'installModal\').style.display=\'none\'">×</span><h2>📱 Install on iPhone</h2><p style="font-size:15px;line-height:1.6">1. Tap the <b>Share</b> button ⬆️ at the bottom of Safari<br>2. Scroll down and tap <b>Add to Home Screen</b><br>3. Tap <b>Add</b> at top right<br><br>Now open it from your Home Screen — it will open full-screen with <b>no address bar</b>.</p><button class="bigBtn blue" onclick="document.getElementById(\'installModal\').style.display=\'none\'">Got it</button>';
-    document.getElementById('installModal').style.display='block';
-  } else {
-    document.getElementById('installModalContent').innerHTML = '<span class="close" onclick="document.getElementById(\'installModal\').style.display=\'none\'">×</span><h2>📱 Install on Android</h2><p style="font-size:15px;line-height:1.6">1. Tap the <b>⋮ Menu</b> at top right of Chrome<br>2. Tap <b>Add to Home Screen</b> / <b>Install App</b><br>3. Tap <b>Install / Add</b><br><br>Now open it from your Home Screen — it will open full-screen with <b>no address bar</b>.</p><button class="bigBtn blue" onclick="document.getElementById(\'installModal\').style.display=\'none\'">Got it</button>';
-    document.getElementById('installModal').style.display='block';
-  }
-}
-
-const WA_NUMBER="381659393420";
-const SUPABASE_URL='https://udqirlpkbpyawqtdbemk.supabase.co';
-const SUPABASE_KEY='sb_publishable_HGaEiVfvFjS0sT6_YfZW4w_moJatIDM';
-const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-let uploadedPhoto="";
-let uploadedPhotos=[];
-let listings = [];
-let curLoc='All', curType='All';
-let realtimeStarted = false;
-let lastFetch = 0;
-
-const DEMO_LISTINGS = [
-  {id:-1, title:"Modern 4 Bed House in Manzini", loc:"Manzini", type:"Rent", price:8500, beds:4, baths:3, desc:"Spacious family house near Manzini town. Water + electricity, secure yard, garage. Perfect for family.", img:"https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800", owner:"Test Owner", phone:"76xxxxxx", momo:"TEST", status:"Approved", is_featured:true, is_demo:true, date:Date.now()},
-  {id:-2, title:"2 Bed Flat in Mbabane", loc:"Mbabane", type:"Rent", price:4500, beds:2, baths:1, desc:"Neat flat in Mbabane town. Close to shops and schools. Safe complex.", img:"https://images.unsplash.com/photo-1502672266-1c1ef2d93688?w=800", owner:"Test Owner", phone:"76xxxxxx", momo:"TEST", status:"Approved", is_featured:false, is_demo:true, date:Date.now()-1000},
-  {id:-3, title:"Luxury 5 Bed House in Ezulwini", loc:"Mbabane", type:"Sale", price:3200000, beds:5, baths:4, desc:"Luxury house in Ezulwini with garden, pool view, big yard. Ideal for family or investment.", img:"https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800", owner:"Test Owner", phone:"76xxxxxx", momo:"TEST", status:"Approved", is_featured:false, is_demo:true, date:Date.now()-2000}
-];
-
-function getFirstImg(imgStr){ return (imgStr||'').split('|||')[0]; }
-function getAllImgs(imgStr){ return (imgStr||'').split('|||').filter(Boolean); }
-
-function updateFee(){
-  let isF = document.getElementById('fFeatured').checked;
-  document.getElementById('feeText').innerHTML = isF ? 'Total to Pay: <b>E250 (E100 + E150 Featured)</b><br>1. Send via MoMo to <b>78213337</b><br>2. Enter MoMo Reference below<br>3. Tap Submit - Admin will approve' : 'Total to Pay: <b>E100</b><br>1. Send via MoMo to <b>78213337</b><br>2. Enter MoMo Reference below<br>3. Tap Submit - Admin will approve';
-}
-
-// ===== INSTANT REFRESH - REALTIME =====
-function setupRealtime(){
-  if(realtimeStarted) return;
-  realtimeStarted = true;
-  try{
-    supabaseClient.channel('listings-live')
-      .on('postgres_changes', {event:'*', schema:'public', table:'listings'}, function(payload){
-        // Any INSERT / UPDATE / DELETE by anyone -> reload instantly
-        refreshNow();
-        // If admin panel is open, also refresh it
-        if(!document.getElementById('adminSection').classList.contains('hidden')){
-          setTimeout(function(){ renderAdmin(); }, 600);
-        }
-      })
-      .subscribe();
-  }catch(e){ console.log('realtime error', e); }
-}
-function refreshNow(){
-  // Prevent double-fetch spam - min 800ms between fetches
-  var now = Date.now();
-  if(now - lastFetch < 800) return;
-  lastFetch = now;
-  loadFromSupabase(true);
-}
-// Refresh when user comes back from WhatsApp / Safari / lock screen
-document.addEventListener('visibilitychange', function(){
-  if(!document.hidden){ refreshNow(); }
-});
-window.addEventListener('focus', function(){ refreshNow(); });
-// Backup: poll every 20 seconds in case realtime drops
-setInterval(function(){ refreshNow(); }, 20000);
-
-async function loadFromSupabase(isSilent){
-  if(!isSilent) { /* first load */ }
-  const {data, error} = await supabaseClient.from('listings').select('*').order('created_at',{ascending:false});
-  if(error){ console.log(error); if(listings.length===0) listings = [...DEMO_LISTINGS]; render(); return; }
-  listings = (data||[]).map(r=>({
-    id: r.id,
-    title: r.title, loc: r.location, type: r.type, price: r.price,
-    beds: r.beds, baths: r.baths, desc: r.description, img: r.photo_url || 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800',
-    owner: r.owner_name, phone: r.owner_phone, momo: r.momo_ref,
-    status: r.status==='approved' ? 'Approved' : 'Pending',
-    is_featured: r.is_featured || false,
-    is_demo: false,
-    date: new Date(r.created_at).getTime()
-  }));
-  if(listings.length===0){ listings = [...DEMO_LISTINGS]; }
-  render();
-  // Keep admin + my listings in sync too if they are open
-  if(!document.getElementById('adminSection').classList.contains('hidden')) renderAdmin();
-  if(!document.getElementById('mySection').classList.contains('hidden')) renderMy();
-}
-
-function previewPhotos(input){
-  let files = Array.from(input.files || []);
-  if(uploadedPhotos.length + files.length > 5){
-    alert('Max 5 photos only. You already have ' + uploadedPhotos.length);
-    files = files.slice(0, 5 - uploadedPhotos.length);
-  }
-  files.forEach(file=>{
-    let reader=new FileReader();
-    reader.onload=function(e){
-      let img=new Image();
-      img.onload=function(){
-        let canvas=document.createElement('canvas');
-        let maxW=600;
-        let scale=Math.min(1, maxW/img.width);
-        canvas.width=img.width*scale;
-        canvas.height=img.height*scale;
-        let ctx=canvas.getContext('2d');
-        ctx.drawImage(img,0,0,canvas.width,canvas.height);
-        let compressed=canvas.toDataURL('image/jpeg',0.5);
-        uploadedPhotos.push(compressed);
-        uploadedPhoto=uploadedPhotos[0];
-        renderPhotoPreviews();
-      };
-      img.src=e.target.result;
-    };
-    reader.readAsDataURL(file);
-  });
-  input.value='';
-}
-function renderPhotoPreviews(){
-  document.getElementById('photoCount').innerText = uploadedPhotos.length + ' / 5 photos';
-  document.getElementById('photoPreviews').innerHTML = uploadedPhotos.map((p,i)=>`
-    <div class="thumbWrap">
-      <img src="${p}" class="photoThumb">
-      <button class="removeThumb" type="button" onclick="removePhoto(${i})">×</button>
-    </div>`).join('');
-}
-function removePhoto(i){
-  uploadedPhotos.splice(i,1);
-  uploadedPhoto = uploadedPhotos[0] || "";
-  renderPhotoPreviews();
-}
-function previewPhoto(input){ previewPhotos(input); }
-
-function setLoc(l,el){curLoc=l;document.querySelectorAll('.chips button').forEach(b=>b.classList.remove('active'));el.classList.add('active');render();}
-function filterType(t){curType=t;render();}
-function clearFilters(){document.getElementById('searchInput').value='';document.getElementById('minPrice').value='';document.getElementById('maxPrice').value='';document.getElementById('bedsFilter').value='';document.getElementById('sortBy').value='new';curLoc='All';curType='All';document.querySelectorAll('.chips button').forEach(b=>b.classList.remove('active'));document.querySelector('.chips button').classList.add('active');render();}
-function render(){
-let q=document.getElementById('searchInput').value.toLowerCase();
-let minP=parseInt(document.getElementById('minPrice').value)||0;
-let maxP=parseInt(document.getElementById('maxPrice').value)||999999999;
-let minBeds=parseInt(document.getElementById('bedsFilter').value)||0;
-let sort=document.getElementById('sortBy').value;
-let filtered=listings.filter(x=>x.status==='Approved' && (curLoc==='All'||x.loc===curLoc) && (curType==='All'||x.type===curType) && Number(x.price)>=minP && Number(x.price)<=maxP && Number(x.beds)>=minBeds && (x.title.toLowerCase().includes(q)||x.loc.toLowerCase().includes(q)||(x.desc||'').toLowerCase().includes(q)));
-if(sort==='low') filtered.sort((a,b)=>Number(a.price)-Number(b.price));
-if(sort==='high') filtered.sort((a,b)=>Number(b.price)-Number(a.price));
-if(sort==='beds') filtered.sort((a,b)=>Number(b.beds)-Number(a.beds));
-if(sort==='new') filtered.sort((a,b)=>(b.date||0)-(a.date||0));
-let feat = filtered.filter(x=>x.is_featured);
-let normal = filtered.filter(x=>!x.is_featured);
-filtered = [...feat, ...normal];
-document.getElementById('count').innerText=filtered.length+' found';
-document.getElementById('list').innerHTML=filtered.map((p,i)=>{
-let idx=listings.indexOf(p);
-let firstImg = getFirstImg(p.img);
-let photoCount = getAllImgs(p.img).length;
-return `<div class="card ${p.is_featured?'featuredCard':''}">
-<img src="${firstImg}">
-<div class="cardBody">
-<span class="badge ${p.type==='Rent'?'rent':'sale'}">${p.type}</span> ${p.is_featured?'<span class="badge featuredBadge">⭐ FEATURED</span>':''} ${p.is_demo?'<span class="badge demoBadge">TEST</span>':''} <span style="font-size:13px">📍 ${p.loc}</span>
-<div class="price">E${Number(p.price).toLocaleString()} ${p.type==='Rent'?'/month':''}</div>
-<div class="meta">🛏 ${p.beds} Beds • 🛁 ${p.baths} Baths ${photoCount>1?'• 📷 '+photoCount+' photos':''}</div>
-<div style="font-weight:bold;margin-top:6px">${p.title}</div>
-<div class="desc">${p.desc}</div>
-<div class="actions">
-<button class="enquire" onclick="enquireProperty(${idx})">💬 Enquire via Admin</button>
-<button class="details" onclick="viewDetail(${idx})">View</button>
-</div>
-</div></div>`
-}).join('') || '<p style="text-align:center;padding:20px">No properties found. Try Clear Filters.</p>';
-}
-function openList(){document.getElementById('listModal').style.display='block';}
-function closeList(){document.getElementById('listModal').style.display='none';}
-
-async function submitProperty(){
-let t=document.getElementById('fTitle').value.trim(), loc=document.getElementById('fLoc').value, type=document.getElementById('fType').value, price=document.getElementById('fPrice').value, beds=document.getElementById('fBeds').value, baths=document.getElementById('fBaths').value, imgLink=document.getElementById('fImg').value, desc=document.getElementById('fDesc').value, owner=document.getElementById('fOwner').value.trim(), phone=document.getElementById('fPhone').value.trim(), momo=document.getElementById('fMomo').value.trim();
-let isFeat = document.getElementById('fFeatured').checked;
-let img = '';
-if(uploadedPhotos.length > 0){ img = uploadedPhotos.join('|||'); }
-else if(imgLink){ img = imgLink; }
-else { img = 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800'; }
-if(!t){alert('Please fill Property Title');return;}
-if(!price){alert('Please fill Price');return;}
-if(!beds){alert('Please fill Bedrooms');return;}
-if(!baths){alert('Please fill Bathrooms');return;}
-if(!owner){alert('Please fill Your Name');return;}
-if(!phone){alert('Please fill Your Phone');return;}
-if(!momo){alert('Please fill MoMo Reference');return;}
-const {error} = await supabaseClient.from('listings').insert([{
-  title:t, location:loc, type:type, price:parseInt(price), beds:parseInt(beds), baths:parseInt(baths),
-  photo_url:img, description:desc, owner_name:owner, owner_phone:phone, momo_ref:momo, status:'pending', is_featured:isFeat
-}]);
-if(error){ alert('Error: '+error.message); return; }
-closeList(); uploadedPhoto=""; uploadedPhotos=[]; renderPhotoPreviews(); document.getElementById('fPhoto').value=''; document.getElementById('fFeatured').checked=false; updateFee();
-// Instant: trigger refresh for this phone too, other phones get it via Realtime
-refreshNow();
-let msg=`NEW LISTING - ${isFeat?'FEATURED E250 PAID':'E100 PAID'}%0A%0ATitle: ${t}%0ALocation: ${loc}%0AType: ${type}%0APrice: E${price}%0ABeds: ${beds} Baths: ${baths}%0AOwner: ${owner}%0APhone: ${phone}%0AMoMo Ref: ${momo}%0ADesc: ${desc}`;
-window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
-alert(isFeat ? 'Submitted! Featured E250 - Admin will approve after confirming payment to 78213337.' : 'Submitted! Your listing is Pending Approval. Admin will approve after confirming E100 payment to 78213337.');
-await loadFromSupabase(); renderMy();
-}
-function viewDetail(idx){
-let p=listings[idx];
-let imgs = getAllImgs(p.img);
-document.getElementById('detailContent').innerHTML=`<span class="close" onclick="document.getElementById('detailModal').style.display='none'">×</span>
-<img id="detailMainImg" src="${imgs[0]}" style="width:100%;border-radius:12px;height:220px;object-fit:cover">
-${imgs.length>1 ? `<div style="display:flex;gap:6px;margin-top:8px;overflow:auto">${imgs.map((im,ii)=>`<img src="${im}" onclick="document.getElementById('detailMainImg').src=this.src;document.querySelectorAll('.detailThumb').forEach(el=>el.classList.remove('active'));this.classList.add('active')" class="detailThumb ${ii===0?'active':''}">`).join('')}</div><p style="font-size:12px;color:#666;margin-top:4px">Tap a photo to view • ${imgs.length} photos</p>` : ''}
-<h2 style="margin-top:10px">${p.title}</h2>
-<p>📍 ${p.loc} • <span class="badge ${p.type==='Rent'?'rent':'sale'}">${p.type}</span> ${p.is_featured?'<span class="badge featuredBadge">⭐ FEATURED</span>':''}</p>
-<h3 style="margin:10px 0">E${Number(p.price).toLocaleString()} ${p.type==='Rent'?'/month':''}</h3>
-<p>🛏 ${p.beds} Beds • 🛁 ${p.baths} Baths</p>
-<p style="margin:10px 0">${p.desc}</p>
-<div style="background:#eef4ff;padding:10px;border-radius:10px;font-size:13px">✅ Verified by Eswatini Property<br>Owner details hidden — Enquire via Middleman for safety.</div>
-<button class="bigBtn green" onclick="enquireProperty(${idx})">💬 Enquire via Middleman - Chat to Admin</button>
-<button class="bigBtn grey" onclick="document.getElementById('detailModal').style.display='none'">Close</button>`;
-document.getElementById('detailModal').style.display='block';
-}
-function enquireProperty(idx){
-let p=listings[idx];
-let msg=`Hi Eswatini Property! I'm interested in:%0A%0A${p.title}%0A${p.loc} - E${p.price} ${p.type}%0A%0APlease connect me to the owner.`;
-window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`,'_blank');
-}
-function showMy(btn){
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');
-document.getElementById('mySection').classList.remove('hidden');
-document.getElementById('adminSection').classList.add('hidden');
-document.getElementById('list').classList.add('hidden');
-renderMy();
-window.scrollTo(0,0);
-}
-function showHome(btn){
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');
-document.getElementById('mySection').classList.add('hidden');
-document.getElementById('adminSection').classList.add('hidden');
-document.getElementById('list').classList.remove('hidden');
-render();
-}
-function openAdmin(btn){
-let pass=prompt('Enter Admin Password:');
-if(pass!=='1234'){alert('Wrong password');return;}
-document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');
-document.getElementById('mySection').classList.add('hidden');
-document.getElementById('list').classList.add('hidden');
-document.getElementById('adminSection').classList.remove('hidden');
-renderAdmin();
-window.scrollTo(0,0);
-}
-function renderAdmin(){
-let real = listings.filter(x=>!x.is_demo);
-let pending=real.filter(x=>x.status==='Pending');
-let approved=real.filter(x=>x.status==='Approved');
-let html=`<div style="padding:0 16px"><b>${pending.length} Pending</b> • ${approved.length} Approved</div>`;
-if(pending.length===0){
-html+=`<p style="padding:20px;text-align:center">No pending listings. Good job!</p>`;
-}else{
-html+=pending.map(p=>{
-let idx=listings.indexOf(p);
-return `<div class="card ${p.is_featured?'featuredCard':''}"><div class="cardBody"><img src="${getFirstImg(p.img)}" style="height:150px;border-radius:10px;margin-bottom:8px"><b>${p.title}</b> ${p.is_featured?'<span class="badge featuredBadge">⭐ FEATURED - Check E250</span>':'<span style="font-size:12px;color:#666">Normal - Check E100</span>'}<br>📍 ${p.loc} • ${p.type} • E${p.price}<br>👤 Owner: ${p.owner} • 📞 ${p.phone}<br>💰 MoMo Ref: ${p.momo}<br><p style="font-size:13px;margin:6px 0">${p.desc}</p><p style="font-size:12px;color:#666">📷 ${getAllImgs(p.img).length} photo(s)</p><div class="actions"><button class="green" onclick="approveListing(${idx})">✅ Approve</button><button class="red" onclick="rejectListing(${idx})">❌ Reject</button></div></div></div>`
-}).join('');
-}
-html+=approved.map(p=>{
-let idx=listings.indexOf(p);
-return `<div class="card"><div class="cardBody"><b>${p.title} - APPROVED ✅</b> ${p.is_featured?'⭐ FEATURED':''}<br><button class="red" style="margin-top:8px;padding:8px 12px;border:none;border-radius:8px" onclick="rejectListing(${idx})">Remove</button> <button onclick="toggleFeatured(${idx})" style="margin-top:8px;padding:8px 12px;border:none;border-radius:8px;background:#FFD700;font-weight:bold">${p.is_featured?'Unfeature':'Make Featured'}</button></div></div>`
-}).join('');
-document.getElementById('adminList').innerHTML=html;
-}
-async function approveListing(idx){
-let id = listings[idx].id;
-await supabaseClient.from('listings').update({status:'approved'}).eq('id',id);
-alert('Approved! Now live for everyone - their phones will update instantly.');
-await loadFromSupabase(); renderAdmin();
-}
-async function toggleFeatured(idx){
-let id = listings[idx].id;
-let newVal = !listings[idx].is_featured;
-await supabaseClient.from('listings').update({is_featured:newVal}).eq('id',id);
-await loadFromSupabase(); renderAdmin();
-}
-async function rejectListing(idx){
-if(!confirm('Reject / Remove this listing?'))return;
-let id = listings[idx].id;
-await supabaseClient.from('listings').delete().eq('id',id);
-await loadFromSupabase(); renderAdmin();
-}
-function renderMy(){
-let mine=listings.filter(x=>!x.is_demo && (x.status==='Pending' || x.status==='Approved'));
-document.getElementById('myList').innerHTML=mine.map(p=>`<div class="card"><div class="cardBody"><b>${p.title}</b> - ${p.loc} - E${p.price}<br><span class="badge ${p.status==='Approved'?'rent':'pending'}">${p.status}</span> ${p.is_featured?'<span class="badge featuredBadge">⭐ FEATURED</span>':''}<p style="font-size:12px;margin-top:6px">MoMo Ref: ${p.momo||''} • Waiting for Admin approval if Pending</p></div></div>`).join('') || '<p style="padding:20px;text-align:center">No listings yet. Tap + List Property.</p>';
-}
-// Start
-setupRealtime();
-loadFromSupabase();
-</script>
 </body>
 </html>
